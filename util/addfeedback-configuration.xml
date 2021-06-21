@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+ 
+    <property name="connection.url">jdbc:sqlserver://localhost;databaseName=school</property>
+    <property name="connection.username">sa</property>
+    <property name="connection.password">exterro-123456</property>
+    <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+ 
+    <property name="show_sql">true</property>
+ 
+    <property name="format_sql">true</property>
+    <property name="hbm2ddl.auto">update</property>
+ 
+    <!-- JDBC connection pool (use the built-in) -->
+    <property name="connection.pool_size">20</property>
+ 
+     <mapping class="com.exterro.model.AddFeedback" />
+     
+ 
+</session-factory>
+</hibernate-configuration>
