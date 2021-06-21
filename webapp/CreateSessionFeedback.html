@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Feedback</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="css/CreateSessionFeedback.css" />
+<!--  <script type="text/javascript"  src="script/AddFeedbackData.js"></script>-->
+</head>
+<body>
+	<h1 style="color: blue; text-align: center">Create Feedback Form</h1>
+	<form action="AdminFeedback.html" method="POST">
+		<div id="register">
+			Name:<br> <input type="text" id="d1"><br>
+			<br> Description:<br>
+			<input type="text" id="d2"> <br>
+			<br> Venue:<br> <input type="text" id="d3"><br>
+			<br> Time:<br> <input type="text" id="d4"><br>
+			<br>
+			<input type="button" id="f1" onClick="createSession()"
+				value="Submit">
+		</div>
+	</form>
+	<script>
+		function createSession() {
+			var sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+			var name = document.getElementById('d1').value;
+			var description = document.getElementById('d2').value;
+			var venue = document.getElementById('d3').value;
+			var time = document.getElementById('d4').value;
+			var obj = {
+				name : name,
+				description : description,
+				venue : venue,
+				time : time
+			};
+			// obj.name=name;
+			// obj.description=description;
+			// obj.venue=venue;
+			// obj.time=time;
+			sessions.push(obj);
+			localStorage.setItem('sessions', JSON.stringify(sessions));
+			//data(obj);
+		}
+		/* async
+		function data(obj) {
+			//alert("inside data");
+			const
+			data = await
+			fetch("rest/call/addFeedback", {
+				method : "POST",
+				headers : {
+					'Accept' : "application/json, text/plain",
+					'Content-Type' : "application/json;charset=utf-8",
+				},
+				mode : 'no-cors',
+				body : JSON.stringify(obj),
+			});
+			const
+			result = data.json();
+			console.log(result)
+		} */
+		$(document).ready(function() {
+			$("#f1").click(function() {
+				var info = {
+					name : $("#d1").val(),
+					description : $("#d2").val(),
+					venue : $("#d3").val(),
+					time : $("#d4").val()
+				};
+				//alert(info.name);
+				// alert(info.image);
+				$.ajax({
+					type : "POST",
+					dataType : 'json',
+					data : {
+						A : JSON.stringify(info)
+					},
+					contentType : "application/json",
+					url : "rest/call/addFeedback",
+					success : function(data) {
+						//alert("Inside success func");
+						//alert("My data!!!" + data.status);
+						var data1 = data.status;
+						if (data.status == "success") {
+							window.location.href = "AdminFeedback.html"
+						}
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+
+						window.location.href = "Admin.html"
+					}
+				});
+
+			});
+
+		});
+		/* $( "#f1" ).on( "test_trigger", function() 
+		 {   alert( "inside" ); 
+		 }); 
+		 $( "#f1" ).trigger( "click" );
+		 //document.addEventListener("test_trigger",func);
+		 alert("in");
+		 $(document).ready(function(){
+		 //alert("inside");
+		 $("#f1").trigger("test_trigger")
+		 });
+
+		 function func()
+		 {
+		 alert("123");
+		 } */
+	</script>
+</body>
+</html>

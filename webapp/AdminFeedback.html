@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin page</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/AdminFeedback.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="script/AddFeedbackTable4.js"></script>
+
+</head>
+<body onload="data()" style="background-color: #F0F0F0">
+	<h2 style="text-align: center">Session details</h2>
+	<div id="right-header">
+		<form action="#">
+			<i class="fa fa-search" style="font-size: 17px"></i> <input
+				type="text" placeholder="Search Session" name="search"
+				onkeyup="myFunction()" id="myInput"> <a href="#"
+				title="Search"> </a> <a href="CreateSessionFeedback.html"
+				title="Create_Session"> <i class="fa fa-plus-square"
+				style="font-size: 17px"></i></a>
+			<button onclick="exportData()" id="download">
+				<span class="fa fa-download" style="width:12px;"></span> 
+			</button>
+			<br> <br>
+		</form>
+	</div>
+	<table id="conference-list">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Venue</th>
+			<th>Time</th>
+			<th>Delete</th>
+			<th>Edit</th>
+		</tr>
+
+	</table>
+
+</body>
+</html>
